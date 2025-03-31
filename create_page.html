@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .register-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4338ca;
+        }
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+        }
+        .toggle-switch input {
+            display: none;
+        }
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        input:checked + .slider {
+            background-color: #4f46e5;
+        }   
+        input:checked + .slider:before {
+            transform: translateX(25px);
+        }
+        .login{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <h2>Create Account</h2>
+        <div class="toggle-container">
+            <label>VIT Student</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle-user" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="input-group">
+            <label for="name">First Name</label>
+            <input type="text" id="name" placeholder="Enter your first name">
+        </div>
+        <div class="input-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" placeholder="Enter your last name">
+        </div>
+        <div class="input-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" placeholder="Enter your mobile number">
+        </div>
+        <div class="input-group">
+            <label for="identifier" id="identifier-label">Register No</label>
+            <input type="text" id="identifier" placeholder="Enter your register number">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button id="register-btn">Create Account</button>
+        <a href="login_page.html"><button class="login">Login</button></a>
+    </div>
+    
+    <script>
+        document.getElementById("toggle-user").addEventListener("change", function() {
+            let identifierLabel = document.getElementById("identifier-label");
+            let identifierInput = document.getElementById("identifier");
+            if (this.checked) {
+                identifierLabel.textContent = "Register No";
+                identifierInput.placeholder = "Enter your register number";
+            } else {
+                identifierLabel.textContent = "Email";
+                identifierInput.placeholder = "Enter your email";
+            }
+        });
+
+        document.getElementById("register-btn").addEventListener("click", function() {
+            let name = document.getElementById("name").value.trim();
+            let lastName = document.getElementById("lastname").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+            let identifier = document.getElementById("identifier").value.trim();
+            let password = document.getElementById("password").value.trim();
+            
+            if (name === "" || lastName === "" || mobile === "" || identifier === "" || password === "") {
+                alert("All fields are required");
+                return;
+            }
+            
+            let user = {
+                name,
+                lastName,
+                mobile,
+                identifier,
+                password
+            };
+            
+            localStorage.setItem("user", JSON.stringify(user));
+            alert("Account created successfully! Redirecting to login page...");
+            window.location.href = "login_page.html";
+        });
+    </script>
+</body>
+</html>
