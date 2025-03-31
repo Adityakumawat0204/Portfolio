@@ -256,11 +256,11 @@
         }
         function addPredefinedProjects() {
             const predefinedProjects = [
+                { name: "Car Hurdle", image: "car.jpg", url: "car.html" },
+                { name: "Stopwatch ", image: "stopwatch.jpg", url: "stopwatch.html" }
                 { name: "bubble shooter", image: "bubble.jpg", url: "bubble.html" },
                 { name: "flappy ball", image: "flappy ball.jpg", url: "flipball.html" },
-                { name: "Car Hurdle", image: "car.jpg", url: "car.html" },
                 { name: "ball jump", image: "ball.jpg", url: "ball.html" },
-                { name: "Stopwatch ", image: "stopwatch.jpg", url: "stopwatch.html" }
             ];
             let projects = JSON.parse(localStorage.getItem("projects")) || [];
             predefinedProjects.forEach(proj => {
