@@ -157,7 +157,11 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", loadProjects);
+        document.addEventListener("DOMContentLoaded", function () {
+    addPredefinedProjects(); 
+    loadProjects(); 
+});
+
 
         function openModal() {
             document.getElementById("modal").style.display = "flex";
