@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Racing Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        canvas {
+            border: 2px solid white;
+            display: block;
+            margin: 20px auto;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Hurdle Game</h1>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <p>Use <b>←</b> and <b>→</b> to Move | Press <b>Enter</b> to Restart</p>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let car, obstacles, gameOver, score, highScore = 0;
+        const carWidth = 50, carHeight = 80, roadWidth = 300;
+
+        function resetGame() {
+            car = { x: canvas.width / 2 - carWidth / 2, y: canvas.height - 120, speed: 5 };
+            obstacles = [];
+            gameOver = false;
+            score = 0;
+            gameLoop();
+        }
+
+        function createObstacle() {
+            let width = 80 + Math.random() * 50;
+            let x = Math.random() * (roadWidth - width) + (canvas.width - roadWidth) / 2;
+            obstacles.push({ x: x, y: -100, width: width, height: 30, speed: 4, counted: false });
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "ArrowLeft" && car.x > (canvas.width - roadWidth) / 2) car.x -= car.speed * 10;
+            if (event.code === "ArrowRight" && car.x + carWidth < (canvas.width + roadWidth) / 2) car.x += car.speed * 10;
+            if (event.code === "Enter" && gameOver) resetGame();
+        });
+
+        setInterval(createObstacle, 1500);
+
+        function update() {
+            if (gameOver) return;
+
+            for (let obs of obstacles) {
+                obs.y += obs.speed;
+
+                // Collision detection
+                if (
+                    car.x < obs.x + obs.width &&
+                    car.x + carWidth > obs.x &&
+                    car.y < obs.y + obs.height &&
+                    car.y + carHeight > obs.y
+                ) {
+                    gameOver = true;
+                }
+
+                // Update score only if the obstacle passes the car
+                if (!obs.counted && obs.y > car.y + carHeight) {
+                    score++;
+                    obs.counted = true;
+                }
+            }
+
+            obstacles = obstacles.filter(obs => obs.y < canvas.height);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw road
+            ctx.fillStyle = "white";
+            ctx.fillRect((canvas.width - roadWidth) / 2, 0, roadWidth, canvas.height);
+
+            // Draw car
+            ctx.fillStyle = "red";
+            ctx.fillRect(car.x, car.y, carWidth, carHeight);
+
+            // Draw obstacles
+            ctx.fillStyle = "black";
+            for (let obs of obstacles) {
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            }
+
+            // Draw score and high score with black background
+            ctx.fillStyle = "black";
+            ctx.fillRect(10, 10, 150, 50);
+            ctx.fillRect(10, 70, 150, 50);
+
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 20, 40);
+            ctx.fillText("High Score: " + highScore, 20, 100);
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+
+            if (!gameOver) {
+                requestAnimationFrame(gameLoop);
+            } else {
+                if (score > highScore) highScore = score;
+                alert("Game Over! Press 'Enter' to Restart.");
+            }
+        }
+
+        resetGame();
+    </script>
+</body>
+</html>
