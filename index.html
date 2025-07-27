@@ -62,6 +62,40 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 1);
         }
 
+        @media (max-width: 768px) {
+            .rotating-disc {
+                display: none;
+            }
+
+            nav {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                width: 100%;
+                padding: 0.5rem 1rem;
+                background-color: #000;
+                flex-direction: row;
+                justify-content: space-around;
+                z-index: 50;
+            }
+
+            nav #logo {
+                display: none;
+            }
+
+            nav .md\:flex {
+                display: flex !important;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+                font-size: 0.75rem;
+            }
+
+            nav .flex.space-x-3 {
+                display: none;
+            }
+        }
+
         #rotatingText {
             position: absolute;
             top: 50%;
@@ -83,15 +117,13 @@
             <a href="#About" class="nav-link">About</a>
             <a href="#resume" class="nav-link">Resume</a>
             <a href="#projects" class="nav-link">Projects</a>
-            <a href="#tech" class="nav-link">Tech Arsenal</a>
-            <a href="#contact" class="nav-link">Contact me</a>
+            <a href="#tech" class="nav-link">Tech</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="flex space-x-3">
             <a href="mailto:adityakumawat2003@gmail.com"><img src="gmail.png" alt="Gmail" class="w-5 h-5" /></a>
-            <a href="https://github.com/Adityakumawat0204" target="_blank"><img src="github.png" alt="GitHub"
-                    class="w-5 h-5" /></a>
-            <a href="https://www.linkedin.com/in/aditya-kumawat2003/" target="_blank"><img src="linkedin.png"
-                    alt="LinkedIn" class="w-5 h-5" /></a>
+            <a href="https://github.com/Adityakumawat0204" target="_blank"><img src="github.png" alt="GitHub" class="w-5 h-5" /></a>
+            <a href="https://www.linkedin.com/in/aditya-kumawat2003/" target="_blank"><img src="linkedin.png" alt="LinkedIn" class="w-5 h-5" /></a>
         </div>
     </nav>
 
@@ -100,6 +132,8 @@
         <div id="section-indicator" class="absolute text-black text-2xl font-bold">Welcome</div>
         <div id="rotatingText"></div>
     </div>
+
+
 
     <!-- Welcome -->
     <section class="h-screen flex items-center justify-center pt-24">
@@ -276,7 +310,6 @@
     <!-- Contact -->
     <section id="contact" class="min-h-screen flex items-start justify-center pt-24 px-6 bg-gray-600">
         <div class="max-w-3xl w-full">
-            <h1 id="zoom-contact" class="text-2xl font-bold opacity-0 mb-4 text-white">Contact Me</h1>
             <div id="content-contact" class="text-base opacity-0 space-y-4 text-white">
                 <p>Let's connect! Open for internships, collabs, or just tech talks.</p>
                 <div class="flex space-x-5">
