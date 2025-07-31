@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Aditya Kumawat | Portfolio</title>
     <link href="./src/output.css" rel="stylesheet" />
     <style>
@@ -11,10 +11,15 @@
             scroll-behavior: smooth;
         }
 
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         #section-indicator {
             top: 50%;
             left: 50%;
-            transform: translate(10%, -50%);
+            transform: translate(-50%, -50%);
             opacity: 1;
             transition: opacity 0.3s ease, transform 0.3s ease;
             text-shadow: 2px 2px 5px rgba(101, 101, 101, 0.7);
@@ -53,13 +58,27 @@
         .rotating-disc {
             position: fixed;
             top: 50%;
-            left: -15%;
+            left: -5%;
             transform: translateY(-50%);
-            width: 450px;
-            height: 450px;
+            width: clamp(200px, 20vw, 450px);
+            height: clamp(200px, 20vw, 450px);
             background-color: white;
             border-radius: 50%;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 1);
+            z-index: 10;
+        }
+
+        #rotatingText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #rotatingText a {
+            font-weight: bold;
+            color: black;
         }
 
         @media (max-width: 768px) {
@@ -95,17 +114,6 @@
                 display: none;
             }
         }
-
-        #rotatingText {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-        }
-
-        #rotatingText a {
-            font-weight: bold;
-            color: black;
-        }
     </style>
 </head>
 
@@ -121,9 +129,11 @@
             <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="flex space-x-3">
-            <a href="mailto:adityakumawat2003@gmail.com"><img src="gmail.png" alt="Gmail" class="w-5 h-5" /></a>
-            <a href="https://github.com/Adityakumawat0204" target="_blank"><img src="github.png" alt="GitHub" class="w-5 h-5" /></a>
-            <a href="https://www.linkedin.com/in/aditya-kumawat2003/" target="_blank"><img src="linkedin.png" alt="LinkedIn" class="w-5 h-5" /></a>
+            <a href="#contact"><img src="gmail.png" alt="Gmail" class="w-5 h-5" /></a>
+            <a href="https://github.com/Adityakumawat0204" target="_blank"><img src="github.png" alt="GitHub"
+                    class="w-5 h-5" /></a>
+            <a href="https://www.linkedin.com/in/aditya-kumawat2003/" target="_blank"><img src="linkedin.png"
+                    alt="LinkedIn" class="w-5 h-5" /></a>
         </div>
     </nav>
 
@@ -362,7 +372,6 @@
         </div>
     </section>
     <script>
-        // Scroll and section title animations (your existing code)
         const sections = ["About", "resume", "projects", "tech", "contact"];
         const sectionTitles = {
             About: "About",
@@ -409,17 +418,13 @@
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 0);
-        });
 
-        const sectionIndicator = document.getElementById("section-indicator");
-        sectionIndicator.style.fontSize = "2.75rem";
-
-        window.addEventListener("load", () => {
             const titles = document.querySelectorAll('h1[id^="zoom-"]');
             titles.forEach(title => {
                 title.style.textShadow = "2px 2px 6px rgba(0,0,0,1)";
             });
         });
+
         const form = document.getElementById("contact-form");
         const status = document.getElementById("form-status");
 
@@ -457,10 +462,7 @@
                 status.style.color = "red";
             });
         });
-
-
     </script>
-
 </body>
 
 </html>
