@@ -1,13 +1,37 @@
-This is my HTML final project.
-directions to use the project :-
-first open the login page file 
-For VIT student student:-
-                        use the credentials as- Reg.No.:- 23BPS1185
-                                                password:- 23BPS1185
+# 🌐 Aditya Kumawat | Personal Portfolio
 
-For non - VIT student:-
-                      use the credentials as -
-                                            Email id - adityakumawat2003@gmail.com
-                                            password - 23BPS1185
+Welcome to my personal portfolio website! This project showcases my skills, projects, and background as a frontend developer and tech enthusiast.
 
-hello this is aditya
+## 🚀 Live Preview
+
+Check it out here (upload on GitHub Pages, Netlify, or Vercel for a live link).
+
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML5, Tailwind CSS, JavaScript
+- **Animation & Effects**: CSS keyframes, JS scroll detection
+- **Responsiveness**: Fully responsive design with mobile-first support
+- **Contact Form**: Integrated with [Formspree](https://formspree.io)
+
+## ✨ Features
+
+- Smooth scrolling and animated section titles
+- Mobile-friendly navigation bar that adapts to screen size
+- Rotating disc with dynamic section indicator (hidden on mobile)
+- Projects section including live playable JavaScript games
+- Integrated contact form with real-time validation and response
+- Competitive programming profiles with clickable logos
+- Dark theme UI with accessible contrast
+
+## 📂 Folder Structure
+
+
+root/
+├── index.html
+├── src/
+│ └── output.css (compiled Tailwind CSS)
+├── assests/
+│ ├── ball.jpg, flappy ball.jpg, bubble.jpg (game thumbnails)
+│ ├── flipball.html, bird.html, bubble.html (JS games)
+│ └── icons (gmail.png, github.png, etc.)
+
